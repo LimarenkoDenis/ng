@@ -1,3 +1,4 @@
+import { CartModule } from './cart/cart.module';
 import { UiModule } from './ui/ui.module';
 import { SearchModule } from './search/search.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,11 +9,9 @@ import { MycomponentComponent } from './mycomponent/mycomponent.component';
 import { TestComponent } from './test/test.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
-import { HighlightDirective } from './highlight.directive';
-import { AclDirective } from './acl.directive';
-import { SearchPipePipe } from './search-pipe.pipe';
-import { AsyncSearchPipePipe } from './async-search-pipe.pipe';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { FormComponent } from './form/form.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,17 +19,15 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
     TestComponent,
     ProductsComponent,
     ProductComponent,
-    HighlightDirective,
-    AclDirective,
-    SearchPipePipe,
-    AsyncSearchPipePipe
+    FormComponent
   ],
   imports: [
     BrowserModule,
     SearchModule,
     UiModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

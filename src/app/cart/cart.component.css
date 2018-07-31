@@ -1,0 +1,30 @@
+.items-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.example-card {
+  max-width: 300px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+
+.items-wrapper_products {
+  width: 1000px;
+}
+
+.cart {
+  width: 40%
+}
+.products {
+  width: 60%
+}
+
+
+
+.error {
+  border: 1px solid red;
+}

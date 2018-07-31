@@ -1,0 +1,10 @@
+<h1>FormBuilder</h1>
+<form [formGroup]="fb" (ngSubmit)="save()">
+  <input type="text" formControlName="title" placeholder="title">
+  <input type="text" formControlName="description" placeholder="description">
+  <input type="text" formControlName="type" placeholder="type">
+  <input type="text" formControlName="photo" placeholder="photo">
+  <input type="text" formControlName="price" placeholder="price">
+
+  <button [disabled]="fb.invalid">Submit</button>
+</form>

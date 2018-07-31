@@ -6,6 +6,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
+import { CartService } from './services/cart.service';
+import { HighlightDirective } from './directives/highlight.directive';
+import { AclDirective } from './directives/acl.directive';
+import { SearchPipePipe } from './pipes/search-pipe.pipe';
+import { AsyncSearchPipePipe } from './pipes/async-search-pipe.pipe';
+import { ProductService } from './services/product.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -14,8 +20,30 @@ import {MatInputModule} from '@angular/material/input';
     MatCardModule,
     MatInputModule
   ],
-  exports: [HeaderComponent, MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule],
-  declarations: [HeaderComponent, SidebarComponent]
+  exports: [
+    HeaderComponent,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatInputModule,
+    SidebarComponent,
+    HighlightDirective,
+    AclDirective,
+    SearchPipePipe,
+    AsyncSearchPipePipe,
+  ],
+  declarations: [
+    HeaderComponent,
+    SidebarComponent,
+    HighlightDirective,
+    AclDirective,
+    SearchPipePipe,
+    AsyncSearchPipePipe,
+  ],
+  providers: [
+    CartService,
+    ProductService,
+   ]
 })
 export class UiModule { }
 
