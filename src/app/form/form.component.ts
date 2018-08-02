@@ -27,7 +27,10 @@ export class FormComponent {
   }
 
   public save(): void {
-    this._productService.createProduct(this.fb.value);
+    this._productService.createProduct(this.fb.value).subscribe((product: Product) => {
+      console.log(product);
+
+    });
   }
 
 }

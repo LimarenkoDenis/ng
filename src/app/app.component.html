@@ -5,10 +5,12 @@
   <input type="text" [formControl]="searchControl" [ngClass]="{'error': searchControl.invalid && searchControl.touched }">
 
   <div class="items-wrapper items-wrapper_products products">
-    <mat-card class="example-card" *ngFor="let product of products | searchPipe: searchControl.value ; index as index ">
+    <mat-card class="example-card" *ngFor="let product of products$ | async | searchPipe: searchControl.value ; index as index ">
       <app-product [appHighlight]="'red'" [highlightColor]="'orange'" [product]="product" (myAddToCart)="addToCart($event)"></app-product>
     </mat-card>
   </div>
+
+  <mat-paginator [length]="100" [pageSize]="2" [pageSizeOptions]="[5, 10, 25, 100]" (page)="changePage($event)"></mat-paginator>
 
   <app-cart></app-cart>
 

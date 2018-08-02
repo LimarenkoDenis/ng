@@ -1,100 +1,42 @@
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
+import { of, Observable } from 'rxjs';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+  constructor(
+    private _http: HttpClient
+  ) { }
 
-  public products: Product[] = [
-    {
-      "id": 0,
-      "title": "Cola",
-      "description": "descr",
-      "photo": "http://thejizn.com/wp-content/uploads/2016/06/coca-cola-stash-can-12-oz-1_1.jpg",
-      "price": 12,
-      "type": "drink"
-    },
-    {
-      "id": 1,
-      "title": "Pepsi",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "http://thejizn.com/wp-content/uploads/2016/06/coca-cola-stash-can-12-oz-1_1.jpg",
-      "price": 10,
-      "type": "drink"
-    },
-    {
-      "id": 2,
-      "title": "Pepsi cola",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "http://thejizn.com/wp-content/uploads/2016/06/coca-cola-stash-can-12-oz-1_1.jpg",
-      "price": 11,
-      "type": "drink"
-    },
-    {
-      "id": 3,
-      "title": "Big Mac",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "https://www.mcdonalds.ua/content/dam/Ukraine/Item_Images/hero.Sdwch_BigMac.png",
-      "price": 22,
-      "type": "sandwich"
-    },
-    {
-      "id": 4,
-      "title": "Big Tasty",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "https://www.mcdonalds.ua/content/dam/Ukraine/Item_Images/hero.Sdwch_BigTasty.png",
-      "price": 45,
-      "type": "sandwich"
-    },
-    {
-      "id": 5,
-      "title": "pie",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "https://www.mcdonalds.ua/content/dam/Ukraine/Item_Images/hero.MuffinBlackberry.png",
-      "price": 10,
-      "type": "dessert"
-    },
-    {
-      "id": 6,
-      "title": "chocolate",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "http://thejizn.com/wp-content/uploads/2016/06/coca-cola-stash-can-12-oz-1_1.jpg",
-      "price": 22,
-      "type": "dessert"
-    },
-    {
-      "id": 7,
-      "title": "ice cream",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "http://thejizn.com/wp-content/uploads/2016/06/coca-cola-stash-can-12-oz-1_1.jpg",
-      "price": 45,
-      "type": "dessert"
-    },
-    {
-      "id": 8,
-      "title": "Orange juice small",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "https://www.mcdonalds.ua/content/dam/Ukraine/Item_Images/hero.JuiceOrangeSmall.png",
-      "price": 45,
-      "type": "drink"
-    },
-    {
-      "id": 9,
-      "title": "Coffee 'Late' small",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "https://www.mcdonalds.ua/content/dam/Ukraine/Item_Images/hero.CoffeeLatteSmall.png",
-      "price": 45,
-      "type": "drink"
-    }
-  ];
+  public getProducts(options: any): Observable<Product[]> {
+    console.log(options);
+    // ?_page=1&_limit=2
+    const params: HttpParams = new HttpParams({
+      fromObject: options
+    });
 
-  constructor() { }
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Autorization', 'Bearer toten324234234234234');
 
-  public getProducts(): Product[] {
-    return this.products;
+
+    return this._http.get<Product[]>(`${environment.url}products`, { params });
   }
 
-  public createProduct(product: Product): void {
-    this.products.push({...product, id: this.products.length });
+  public createProduct(product: Product): Observable<Product> {
+
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Autorization', 'Bearer toten324234234234234');
+
+
+    return this._http.post<Product>(`${environment.url}products`, product).pipe(
+      map((item: Product) => {
+        item.price = item.price * 2;
+        return item;
+      })
+    );
   }
 }

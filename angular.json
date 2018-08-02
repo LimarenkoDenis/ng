@@ -53,6 +53,14 @@
                 }
               ],
               "aot": true
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
             }
           }
         },
@@ -67,6 +75,9 @@
             },
             "staging": {
               "browserTarget": "angularapp:build:staging"
+            },
+            "dev": {
+              "browserTarget": "angularapp:build:dev"
             }
           }
         },

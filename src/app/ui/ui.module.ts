@@ -12,13 +12,15 @@ import { AclDirective } from './directives/acl.directive';
 import { SearchPipePipe } from './pipes/search-pipe.pipe';
 import { AsyncSearchPipePipe } from './pipes/async-search-pipe.pipe';
 import { ProductService } from './services/product.service';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ],
   exports: [
     HeaderComponent,
@@ -31,6 +33,7 @@ import { ProductService } from './services/product.service';
     AclDirective,
     SearchPipePipe,
     AsyncSearchPipePipe,
+    MatPaginatorModule
   ],
   declarations: [
     HeaderComponent,
@@ -42,7 +45,7 @@ import { ProductService } from './services/product.service';
   ],
   providers: [
     CartService,
-    ProductService,
+    // ProductService,
    ]
 })
 export class UiModule { }

@@ -14,13 +14,10 @@ export class HighlightDirective implements OnInit {
   constructor(
     private _el: ElementRef
   ) {
-    console.log(this.highlightColor);
 
   }
 
   public ngOnInit() {
-    console.log(this.appHighlight);
-
     this._el.nativeElement.style.backgroundColor = this.highlightColor || 'red';
   }
 

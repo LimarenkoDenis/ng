@@ -10,8 +10,6 @@ export class AclDirective {
     private _viewContainer: ViewContainerRef,
     // private _authService
   ) {
-    console.log('acl');
-
   }
 
   ngOnInit() {

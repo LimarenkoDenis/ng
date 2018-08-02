@@ -11,6 +11,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { FormComponent } from './form/form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormComponent } from './form/form.component';
     ReactiveFormsModule,
     FormsModule,
     CartModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
