@@ -26,6 +26,10 @@ export class ProductService {
     return this._http.get<Product[]>(`${environment.url}products`, { params });
   }
 
+  public getProduct(id: string): Observable<Product> {
+    return this._http.get<Product>(`${environment.url}products/${id}`);
+  }
+
   public createProduct(product: Product): Observable<Product> {
 
     let headers: HttpHeaders = new HttpHeaders();

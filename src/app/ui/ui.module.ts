@@ -13,6 +13,7 @@ import { SearchPipePipe } from './pipes/search-pipe.pipe';
 import { AsyncSearchPipePipe } from './pipes/async-search-pipe.pipe';
 import { ProductService } from './services/product.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ServicesGuard } from './services/services.guard';
 @NgModule({
   imports: [
     CommonModule,
@@ -45,6 +46,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   ],
   providers: [
     CartService,
+    ServicesGuard,
     // ProductService,
    ]
 })

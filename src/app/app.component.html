@@ -1,6 +1,6 @@
 <div class="wrapper">
 
-  <app-form></app-form>
+  <!-- <app-form></app-form> -->
 
   <input type="text" [formControl]="searchControl" [ngClass]="{'error': searchControl.invalid && searchControl.touched }">
 
@@ -12,6 +12,14 @@
 
   <mat-paginator [length]="100" [pageSize]="2" [pageSizeOptions]="[5, 10, 25, 100]" (page)="changePage($event)"></mat-paginator>
 
-  <app-cart></app-cart>
+  <!-- <app-cart></app-cart> -->
+
+  <div>
+    <button  [routerLink]="['/cart']" [routerLinkActive]="['active-link']">Cart</button>
+    <button  [routerLink]="['/form']" [routerLinkActive]="['active-link']">Form</button>
+  </div>
+
+  <router-outlet></router-outlet>
+
 
 </div>
