@@ -2,6 +2,12 @@
 
   <!-- <app-form></app-form> -->
 
+
+  <div *ngIf="isLoading$ | async">
+    Loading...
+  </div>
+
+
   <input type="text" [formControl]="searchControl" [ngClass]="{'error': searchControl.invalid && searchControl.touched }">
 
   <div class="items-wrapper items-wrapper_products products">

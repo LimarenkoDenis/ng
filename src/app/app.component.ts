@@ -1,3 +1,4 @@
+import { State } from './reducers';
 import { Component, HostListener, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import {Cart } from './interface/interfaces';
 import { Observable, of, Subscription } from 'rxjs';
@@ -6,6 +7,7 @@ import { delay, switchMap } from 'rxjs/operators';
 import { CartService } from './ui/services/cart.service';
 import { ProductService } from './ui/services/product.service';
 import { PageEvent } from '@angular/material';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,7 @@ import { PageEvent } from '@angular/material';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
+  public isLoading$: Observable<boolean>;
   public searchControl: FormControl = new FormControl('', [Validators.required, Validators.email, this.checkEmail], [this.checkAsyncEmail]);
   public products$: Observable<Product[]>;
   public products: Product[];
@@ -26,17 +29,24 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   public constructor(
     private _cartService: CartService,
     private _productService: ProductService,
+    private _store: Store<State>
   ) {
   }
 
   public ngOnInit() {
+    this._store.subscribe(data => console.log(data));
+
+    this.products$ =  this._store.select('products', 'data');
+    this.isLoading$ =  this._store.select('products', 'isLoading');
+
+
     // this.searchControl.valueChanges.pipe(
     //   switchMap((value: string) => this._productService.getProducts({text: value})),
     // );
-    this.getProducts(this.options);
-    this.sub = this._productService.getProducts(this.options).subscribe((products: Product[]) => {
-      this.products = products;
-    });
+    // this.getProducts(this.options);
+    // this.sub = this._productService.getProducts(this.options).subscribe((products: Product[]) => {
+    //   this.products = products;
+    // });
   }
 
   public addToCart(product: Product) {

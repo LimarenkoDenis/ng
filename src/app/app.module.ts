@@ -17,13 +17,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './app.effects';
+
 const routes: Routes = [
   { path: '', redirectTo: 'cart', pathMatch: 'full' },
   {
     path: 'cart',
     canLoad: [ServicesGuard],
-    // TODo check can find module when build with --prod
-    loadChildren: 'app/cart/cart.module#CartModule'
+    // TODO check can find module when build with --prod
+    loadChildren: './cart/cart.module#CartModule'
     // component: CartComponent,
     // data: { title: 'Cart' },
     // children: [
@@ -53,7 +60,10 @@ const routes: Routes = [
     FormsModule,
     CartModule,
     HttpClientModule,
-    RouterModule.forRoot(routes, { enableTracing: false })
+    RouterModule.forRoot(routes, { enableTracing: false }),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([AppEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

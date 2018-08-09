@@ -9,6 +9,6 @@ export class ServicesGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     console.log('ActivatedRouteSnapshot', next);
     console.log('RouterStateSnapshot', state);
-    return of(false);
+    return of(true);
   }
 }
